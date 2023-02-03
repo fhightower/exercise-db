@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  base:
+    &base
+    build:
+      dockerfile: Dockerfile
+      context: .
+    volumes:
+      - ./:/code
+    ports:
+      - 3000:3000
+
+  dev:
+    <<: *base
+    command: bash
+
+  serve:
+    <<: *base
+    command: bin/rails server -b 0.0.0.0
+
