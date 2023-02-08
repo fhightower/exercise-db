@@ -1,12 +1,17 @@
 <h1>Exercises</h1>
 
-<ul>
-  <% @exercises.each do |exercise| %>
-    <li>
-      <%= link_to exercise.title, exercise %>
-    </li>
-  <% end %>
-</ul>
+<div data-controller="search">
+  <input type="text" name="search" id="search" data-search-target="query">
+  <button type="submit" data-action="search#runSearch">Search</button>
+
+  <ul>
+    <% @exercises.each do |exercise| %>
+      <li data-search-target="exercise">
+        <%= link_to exercise.title, exercise %>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
 <%= link_to "New Exercise", new_exercise_path %>
 
